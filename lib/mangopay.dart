@@ -16,7 +16,8 @@ class MangoPay {
     @required this.mangoCard,
   });
 
-  // @throws exceptions
+  // @throws ApiException
+  // @throws ValidationException
   Future<CardRegistration> registerCard() async {
     
     // @throws ValidationException

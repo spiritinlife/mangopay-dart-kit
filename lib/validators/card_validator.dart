@@ -6,13 +6,13 @@ class CardValidator {
     cardNumber = cardNumber.isNotEmpty ? cardNumber.trim() : "";
 
     if (ValidatorUtils.isNumeric(cardNumber) &&
-        CardValidator._validateCheckDigit(cardNumber)) return true;
+        CardValidator.validateCheckDigit(cardNumber)) return true;
 
     throw ValidationException.cardFormat();
   }
 
   // From https://stackoverflow.com/questions/12310837/implementation-of-luhn-algorithm
-  static bool _validateCheckDigit(String cardNumber) {
+  static bool validateCheckDigit(String cardNumber) {
     String sanitized = cardNumber.replaceAll(new RegExp(r'[^0-9]+'), '');
 
     // Luhn algorithm

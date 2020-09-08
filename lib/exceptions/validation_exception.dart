@@ -18,4 +18,14 @@ class ValidationException implements Exception {
 
   factory ValidationException.cardFormat() =>
       ValidationException('105202', 'CARD_NUMBER_FORMAT_ERROR');
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+  
+    return o is ValidationException &&
+      o.code == code &&
+      o.message == message;
+  }
+
 }
