@@ -3,7 +3,7 @@ import 'package:mangopay_card/validators/validator_utils.dart';
 
 class CardValidator {
   static bool validate(String cardNumber) {
-    cardNumber = cardNumber.isNotEmpty ? cardNumber.trim() : "";
+    cardNumber = cardNumber != null && cardNumber.isNotEmpty ? cardNumber.trim() : "";
 
     if (ValidatorUtils.isNumeric(cardNumber) &&
         CardValidator.validateCheckDigit(cardNumber)) return true;
