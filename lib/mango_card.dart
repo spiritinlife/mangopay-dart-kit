@@ -16,7 +16,7 @@ class MangoCard {
     @required this.cardNumber,
     @required this.expirationDate,
     @required this.cvx,
-    @required this.cardType,
+    this.cardType = 'CB_VISA_MASTERCARD',
   });
 
   assertCardIsValid() =>
