@@ -1,4 +1,4 @@
-import 'package:mangopay_card/exceptions/validation_exception.dart';
+import 'package:mangopay_card/exceptions/mango_validation_exception.dart';
 import 'package:mangopay_card/validators/validator_utils.dart';
 
 class ExpirationDateValidator {
@@ -20,11 +20,11 @@ class ExpirationDateValidator {
         }
 
         // Date is in the past
-        throw ValidationException.expirationDateInThePast();
+        throw MangoValidationException.expirationDateInThePast();
       }
     }
 
     // Date does not look correct
-    throw ValidationException.expirationDateFormat();
+    throw MangoValidationException.expirationDateFormat();
   }
 }

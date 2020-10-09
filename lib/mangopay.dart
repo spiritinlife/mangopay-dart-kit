@@ -6,7 +6,6 @@ import 'package:mangopay_card/mango_card.dart';
 import 'package:mangopay_card/mango_settings.dart';
 import 'package:mangopay_card/models/card_registration.dart';
 
-/// A Calculator.
 class MangoPay {
   final MangoSettings mangoSettings;
   final MangoCard mangoCard;
@@ -16,7 +15,7 @@ class MangoPay {
     @required this.mangoCard,
   });
 
-  // @throws ApiException
+  // @throws MangoException
   // @throws ValidationException
   Future<CardRegistration> registerCard() async {
     

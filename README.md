@@ -7,6 +7,7 @@ A dart port of https://github.com/Mangopay/cardregistration-js-kit/
 ```
 Map dt = {...settings retrieved from your server...}
 
+// fromMap or with MangoSettings()
 final mangoSettings = MangoSettings.fromMap({
     "baseURL": "https://api.sandbox.mangopay.com",
     "clientId": "vendora",
@@ -16,6 +17,7 @@ final mangoSettings = MangoSettings.fromMap({
     "cardRegistrationURL": dt['card_registration_url'],
 });
 
+// fromMap or with MangoCard()
 final mangoCard = MangoCard.fromMap({
     "cardNumber": "4970049",
     "cvx": "12",
@@ -29,15 +31,12 @@ final MangoPay mp = MangoPay(
 
 try {
     CardRegistration cr = await mp.registerCard();
-} on ApiErrorException {
-
-} on ValidationException {
-    
-}
+} on MangoException {
+    // these are known MangoExceptions with a code that maps to mango docs
+} on MangoValidationException {
+    // these are card validation exceptions with a code that maps to mango docs
+}on MangoNetworkException {
+    // these are exceptions caused by connectivity error
+} 
 ```
     
-
-
-# TODO
-- [] http errors
-- [] >=400 mangoo errors

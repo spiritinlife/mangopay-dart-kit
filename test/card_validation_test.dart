@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mangopay_card/exceptions/validation_exception.dart';
+import 'package:mangopay_card/exceptions/mango_validation_exception.dart';
 import 'package:mangopay_card/validators/card_validator.dart';
 import 'package:mangopay_card/validators/cvv_validator.dart';
 import 'package:mangopay_card/validators/expiration_date_validator.dart';
@@ -28,46 +28,46 @@ void main() {
 
   test(" CVVNumberValidator should return true if cc length is valid", () {
     expect(() => CvvValidator.validate("12", "AMEX"),
-        throwsA(ValidationException.cvv()));
+        throwsA(MangoValidationException.cvv()));
     expect(CvvValidator.validate("123", "AMEX"), true);
     expect(CvvValidator.validate("9999", "AMEX"), true);
     expect(CvvValidator.validate("123", "CB_VISA_MASTERCARD"), true);
     expect(() => CvvValidator.validate("1234", "CB_VISA_MASTERCARD"),
-        throwsA(ValidationException.cvv()));
+        throwsA(MangoValidationException.cvv()));
     expect(() => CvvValidator.validate("12", "CB_VISA_MASTERCARD"),
-        throwsA(ValidationException.cvv()));
+        throwsA(MangoValidationException.cvv()));
     expect(() => CvvValidator.validate("12345", "CB_VISA_MASTERCARD"),
-        throwsA(ValidationException.cvv()));
+        throwsA(MangoValidationException.cvv()));
     expect(() => CvvValidator.validate("asd", "CB_VISA_MASTERCARD"),
-        throwsA(ValidationException.cvv()));
+        throwsA(MangoValidationException.cvv()));
     expect(() => CvvValidator.validate("", "CB_VISA_MASTERCARD"),
-        throwsA(ValidationException.cvv()));
+        throwsA(MangoValidationException.cvv()));
   });
 
   test(
       " ExpirationDateValidator should return false if format of DateTime is incorrect",
       () {
     expect(() => ExpirationDateValidator.validate("123", DateTime.now()),
-        throwsA(ValidationException.expirationDateFormat()));
+        throwsA(MangoValidationException.expirationDateFormat()));
     expect(() => ExpirationDateValidator.validate("1999", DateTime.now()),
-        throwsA(ValidationException.expirationDateFormat()));
+        throwsA(MangoValidationException.expirationDateFormat()));
     // expect(() => ExpirationDateValidator.validate("1210", DateTime.now()),
-    //     throwsA(ValidationException.expirationDateFormat()));
+    //     throwsA(MangoValidationException.expirationDateFormat()));
     expect(() => ExpirationDateValidator.validate("2222", DateTime.now()),
-        throwsA(ValidationException.expirationDateFormat()));
+        throwsA(MangoValidationException.expirationDateFormat()));
     expect(() => ExpirationDateValidator.validate("a622", DateTime.now()),
-        throwsA(ValidationException.expirationDateFormat()));
+        throwsA(MangoValidationException.expirationDateFormat()));
     expect(() => ExpirationDateValidator.validate("", DateTime.now()),
-        throwsA(ValidationException.expirationDateFormat()));
+        throwsA(MangoValidationException.expirationDateFormat()));
   });
 
   test(
       " ExpirationDateTimeValidator should return false if mmyy DateTime is in the past",
       () {
     expect(() => ExpirationDateValidator.validate("0214", DateTime(2014, 3, 1)),
-        throwsA(ValidationException.expirationDateInThePast()));
+        throwsA(MangoValidationException.expirationDateInThePast()));
     expect(() => ExpirationDateValidator.validate("0313", DateTime(2014, 2, 1)),
-        throwsA(ValidationException.expirationDateInThePast()));
+        throwsA(MangoValidationException.expirationDateInThePast()));
   });
 
   test(

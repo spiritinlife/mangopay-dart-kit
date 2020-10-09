@@ -1,14 +1,15 @@
-import 'package:mangopay_card/exceptions/validation_exception.dart';
+import 'package:mangopay_card/exceptions/mango_validation_exception.dart';
 import 'package:mangopay_card/validators/validator_utils.dart';
 
 class CardValidator {
   static bool validate(String cardNumber) {
-    cardNumber = cardNumber != null && cardNumber.isNotEmpty ? cardNumber.trim() : "";
+    cardNumber =
+        cardNumber != null && cardNumber.isNotEmpty ? cardNumber.trim() : "";
 
     if (ValidatorUtils.isNumeric(cardNumber) &&
         CardValidator.validateCheckDigit(cardNumber)) return true;
 
-    throw ValidationException.cardFormat();
+    throw MangoValidationException.cardFormat();
   }
 
   // From https://stackoverflow.com/questions/12310837/implementation-of-luhn-algorithm

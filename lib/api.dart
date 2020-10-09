@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
-import 'package:mangopay_card/exceptions/api_exception.dart';
+import 'package:mangopay_card/exceptions/mango_exception.dart';
+import 'package:mangopay_card/exceptions/mango_network_exception.dart';
 import 'package:mangopay_card/mango_card.dart';
 import 'package:mangopay_card/mango_settings.dart';
 
@@ -26,21 +29,22 @@ class Api {
       );
 
       if (cardRegisterResponse.statusCode >= 400)
-        throw ApiException('101699', "CardRegistration error");
+        throw MangoException('101699', "CardRegistration error");
 
       final CardRegistration cardRegistration =
           CardRegistration.fromJson(cardRegisterResponse.body);
 
       if (cardRegistration.resultCode != "000000")
-        throw ApiException.cardRegistration(
+        throw MangoException.cardRegistration(
           cardRegistration.resultCode,
           cardRegistration.resultMessage,
         );
 
       return cardRegistration;
-    } on Exception catch (e) {
-     
-      throw ApiException.unknown(e.toString());
+    } on SocketException catch (e) {
+      throw MangoNetworkException(e);
+    } on HttpException catch (e) {
+      throw MangoNetworkException(e);
     }
   }
 
@@ -63,18 +67,20 @@ class Api {
       );
 
       if (tokenResponse.statusCode >= 400)
-        throw ApiException.fromJson(tokenResponse.body);
+        throw MangoException.fromJson(tokenResponse.body);
 
-      if (tokenResponse.body == null) throw ApiException.token('001599');
+      if (tokenResponse.body == null) throw MangoException.token('001599');
 
       if (tokenResponse.body.indexOf('errorCode=') == 0)
-        throw ApiException.token(
+        throw MangoException.token(
           tokenResponse.body.replaceAll('errorCode=', ''),
         );
 
       return tokenResponse.body;
-    } on Exception catch (e) {
-      throw ApiException.unknown(e.toString());
+    } on SocketException catch (e) {
+      throw MangoNetworkException(e);
+    } on HttpException catch (e) {
+      throw MangoNetworkException(e);
     }
   }
 }
