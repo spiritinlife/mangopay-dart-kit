@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class MangoValidationException implements Exception {
   final String code;
   final String message;
