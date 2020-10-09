@@ -2,6 +2,10 @@
 
 A dart port of https://github.com/Mangopay/cardregistration-js-kit/
 
+# Install
+
+https://pub.dev/packages/mangopay_card/install
+
 # Use
 
 ```
