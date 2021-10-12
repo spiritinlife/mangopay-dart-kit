@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:meta/meta.dart';
-
 class MangoSettings {
   final String baseURL;
   final String clientId;
@@ -12,12 +10,12 @@ class MangoSettings {
   final String accessKey;
 
   MangoSettings({
-    @required this.baseURL,
-    @required this.clientId,
-    @required this.cardPreregistrationId,
-    @required this.cardRegistrationURL,
-    @required this.preregistrationData,
-    @required this.accessKey,
+    required this.baseURL,
+    required this.clientId,
+    required this.cardPreregistrationId,
+    required this.cardRegistrationURL,
+    required this.preregistrationData,
+    required this.accessKey,
   });
 
   @override
@@ -37,8 +35,6 @@ class MangoSettings {
   }
 
   factory MangoSettings.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-
     return MangoSettings(
       baseURL: map['baseURL'],
       clientId: map['clientId'],
@@ -51,20 +47,22 @@ class MangoSettings {
 
   String toJson() => json.encode(toMap());
 
-  factory MangoSettings.fromJson(String source) => MangoSettings.fromMap(json.decode(source));
+  factory MangoSettings.fromJson(String source) =>
+      MangoSettings.fromMap(json.decode(source));
 
   MangoSettings copyWith({
-    String baseURL,
-    String clientId,
-    String cardPreregistrationId,
-    String cardRegistrationURL,
-    String preregistrationData,
-    String accessKey,
+    String? baseURL,
+    String? clientId,
+    String? cardPreregistrationId,
+    String? cardRegistrationURL,
+    String? preregistrationData,
+    String? accessKey,
   }) {
     return MangoSettings(
       baseURL: baseURL ?? this.baseURL,
       clientId: clientId ?? this.clientId,
-      cardPreregistrationId: cardPreregistrationId ?? this.cardPreregistrationId,
+      cardPreregistrationId:
+          cardPreregistrationId ?? this.cardPreregistrationId,
       cardRegistrationURL: cardRegistrationURL ?? this.cardRegistrationURL,
       preregistrationData: preregistrationData ?? this.preregistrationData,
       accessKey: accessKey ?? this.accessKey,
@@ -74,23 +72,23 @@ class MangoSettings {
   @override
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
-  
+
     return o is MangoSettings &&
-      o.baseURL == baseURL &&
-      o.clientId == clientId &&
-      o.cardPreregistrationId == cardPreregistrationId &&
-      o.cardRegistrationURL == cardRegistrationURL &&
-      o.preregistrationData == preregistrationData &&
-      o.accessKey == accessKey;
+        o.baseURL == baseURL &&
+        o.clientId == clientId &&
+        o.cardPreregistrationId == cardPreregistrationId &&
+        o.cardRegistrationURL == cardRegistrationURL &&
+        o.preregistrationData == preregistrationData &&
+        o.accessKey == accessKey;
   }
 
   @override
   int get hashCode {
     return baseURL.hashCode ^
-      clientId.hashCode ^
-      cardPreregistrationId.hashCode ^
-      cardRegistrationURL.hashCode ^
-      preregistrationData.hashCode ^
-      accessKey.hashCode;
+        clientId.hashCode ^
+        cardPreregistrationId.hashCode ^
+        cardRegistrationURL.hashCode ^
+        preregistrationData.hashCode ^
+        accessKey.hashCode;
   }
 }

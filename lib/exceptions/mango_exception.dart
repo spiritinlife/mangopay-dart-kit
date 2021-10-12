@@ -16,8 +16,6 @@ class MangoException implements Exception {
       MangoException(errorCode, status);
 
   factory MangoException._fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-
     return MangoException(
       map['ResultCode'],
       map['ResultMessage'],
@@ -31,9 +29,7 @@ class MangoException implements Exception {
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
 
-    return o is MangoException &&
-        o.code == code &&
-        o.message == message;
+    return o is MangoException && o.code == code && o.message == message;
   }
 
   @override

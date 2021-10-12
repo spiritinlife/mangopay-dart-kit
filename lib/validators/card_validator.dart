@@ -2,7 +2,7 @@ import 'package:mangopay_card/exceptions/mango_validation_exception.dart';
 import 'package:mangopay_card/validators/validator_utils.dart';
 
 class CardValidator {
-  static bool validate(String cardNumber) {
+  static bool validate(String? cardNumber) {
     cardNumber =
         cardNumber != null && cardNumber.isNotEmpty ? cardNumber.trim() : "";
 

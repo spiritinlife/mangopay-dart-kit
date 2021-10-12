@@ -1,7 +1,10 @@
-## [0.0.2] - TODO: Add release date.
+## [1.0.0-alpha.1] 
+
+* Initial work on flutter 2.x support
+## [0.0.2]
 
 * Wrap network exceptions and change exception naming
 
-## [0.0.1] - TODO: Add release date.
+## [0.0.1]
 
 * Port of https://github.com/Mangopay/cardregistration-js-kit/

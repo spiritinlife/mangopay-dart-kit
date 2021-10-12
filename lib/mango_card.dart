@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:meta/meta.dart';
-
 import 'package:mangopay_card/validators/card_validator.dart';
 import 'package:mangopay_card/validators/cvv_validator.dart';
 import 'package:mangopay_card/validators/expiration_date_validator.dart';
@@ -13,9 +11,9 @@ class MangoCard {
   final String cardType;
 
   MangoCard({
-    @required this.cardNumber,
-    @required this.expirationDate,
-    @required this.cvx,
+    required this.cardNumber,
+    required this.expirationDate,
+    required this.cvx,
     this.cardType = 'CB_VISA_MASTERCARD',
   });
 
@@ -49,8 +47,6 @@ class MangoCard {
   }
 
   factory MangoCard.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-
     return MangoCard(
       cardNumber: map['cardNumber'],
       expirationDate: map['expirationDate'],

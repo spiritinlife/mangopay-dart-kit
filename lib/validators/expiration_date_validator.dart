@@ -2,7 +2,7 @@ import 'package:mangopay_card/exceptions/mango_validation_exception.dart';
 import 'package:mangopay_card/validators/validator_utils.dart';
 
 class ExpirationDateValidator {
-  static bool validate(String cardDate, DateTime currentDate) {
+  static bool validate(String? cardDate, DateTime currentDate) {
     cardDate = cardDate != null && cardDate.isNotEmpty ? cardDate.trim() : "";
 
     // Requires 2 digit for month and 2 digits for year

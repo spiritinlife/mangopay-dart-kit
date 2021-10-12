@@ -4,7 +4,7 @@ class CardRegistration {
   // Card registration id
   final String id;
   // Custom data
-  final String tag;
+  final String? tag;
   // The creation date of the object
   final double creationDate;
   // ID of the credited user (owner of the credited wallet)
@@ -30,37 +30,37 @@ class CardRegistration {
   final String currency;
 
   CardRegistration({
-    this.id,
-    this.tag,
-    this.creationDate,
-    this.userId,
-    this.accessKey,
-    this.preregistrationData,
-    this.registrationData,
-    this.cardId,
-    this.cardType,
-    this.cardRegistrationURL,
-    this.status,
-    this.resultCode,
-    this.resultMessage,
-    this.currency,
+    required this.id,
+    required this.tag,
+    required this.creationDate,
+    required this.userId,
+    required this.accessKey,
+    required this.preregistrationData,
+    required this.registrationData,
+    required this.cardId,
+    required this.cardType,
+    required this.cardRegistrationURL,
+    required this.status,
+    required this.resultCode,
+    required this.resultMessage,
+    required this.currency,
   });
 
   CardRegistration copyWith({
-    String id,
-    String tag,
-    double creationDate,
-    String userId,
-    String accessKey,
-    String preregistrationData,
-    String registrationData,
-    String cardId,
-    String cardType,
-    String cardRegistrationURL,
-    String status,
-    String resultCode,
-    String resultMessage,
-    String currency,
+    String? id,
+    String? tag,
+    double? creationDate,
+    String? userId,
+    String? accessKey,
+    String? preregistrationData,
+    String? registrationData,
+    String? cardId,
+    String? cardType,
+    String? cardRegistrationURL,
+    String? status,
+    String? resultCode,
+    String? resultMessage,
+    String? currency,
   }) {
     return CardRegistration(
       id: id ?? this.id,
@@ -100,12 +100,10 @@ class CardRegistration {
   }
 
   factory CardRegistration.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-  
     return CardRegistration(
       id: map['Id'],
       tag: map['Tag'],
-      creationDate: double.tryParse(map['CreationDate'].toString()),
+      creationDate: double.parse(map['CreationDate'].toString()),
       userId: map['UserId'],
       accessKey: map['AccessKey'],
       preregistrationData: map['PreregistrationData'],
@@ -122,7 +120,8 @@ class CardRegistration {
 
   String toJson() => json.encode(toMap());
 
-  factory CardRegistration.fromJson(String source) => CardRegistration.fromMap(json.decode(source));
+  factory CardRegistration.fromJson(String source) =>
+      CardRegistration.fromMap(json.decode(source));
 
   @override
   String toString() {
@@ -132,39 +131,39 @@ class CardRegistration {
   @override
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
-  
+
     return o is CardRegistration &&
-      o.id == id &&
-      o.tag == tag &&
-      o.creationDate == creationDate &&
-      o.userId == userId &&
-      o.accessKey == accessKey &&
-      o.preregistrationData == preregistrationData &&
-      o.registrationData == registrationData &&
-      o.cardId == cardId &&
-      o.cardType == cardType &&
-      o.cardRegistrationURL == cardRegistrationURL &&
-      o.status == status &&
-      o.resultCode == resultCode &&
-      o.resultMessage == resultMessage &&
-      o.currency == currency;
+        o.id == id &&
+        o.tag == tag &&
+        o.creationDate == creationDate &&
+        o.userId == userId &&
+        o.accessKey == accessKey &&
+        o.preregistrationData == preregistrationData &&
+        o.registrationData == registrationData &&
+        o.cardId == cardId &&
+        o.cardType == cardType &&
+        o.cardRegistrationURL == cardRegistrationURL &&
+        o.status == status &&
+        o.resultCode == resultCode &&
+        o.resultMessage == resultMessage &&
+        o.currency == currency;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      tag.hashCode ^
-      creationDate.hashCode ^
-      userId.hashCode ^
-      accessKey.hashCode ^
-      preregistrationData.hashCode ^
-      registrationData.hashCode ^
-      cardId.hashCode ^
-      cardType.hashCode ^
-      cardRegistrationURL.hashCode ^
-      status.hashCode ^
-      resultCode.hashCode ^
-      resultMessage.hashCode ^
-      currency.hashCode;
+        tag.hashCode ^
+        creationDate.hashCode ^
+        userId.hashCode ^
+        accessKey.hashCode ^
+        preregistrationData.hashCode ^
+        registrationData.hashCode ^
+        cardId.hashCode ^
+        cardType.hashCode ^
+        cardRegistrationURL.hashCode ^
+        status.hashCode ^
+        resultCode.hashCode ^
+        resultMessage.hashCode ^
+        currency.hashCode;
   }
 }

@@ -2,7 +2,7 @@ import 'package:mangopay_card/exceptions/mango_validation_exception.dart';
 import 'package:mangopay_card/validators/validator_utils.dart';
 
 class CvvValidator {
-  static bool validate(String cvv, String cardType) {
+  static bool validate(String? cvv, String? cardType) {
     // this is the default card type https://docs.mangopay.com/endpoints/v2/cards#e181_the-card-object
     cardType = cardType ?? 'CB_VISA_MASTERCARD';
 
