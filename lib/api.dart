@@ -18,7 +18,7 @@ class Api {
     required String cardPreregistrationId,
     required String registrationData,
   }) async {
-    final Uri url = Uri.dataFromString(
+    final Uri url = Uri.parse(
         '$baseUrl/v$_VERSION/$clientId/CardRegistrations/$cardPreregistrationId');
 
     try {
@@ -52,7 +52,7 @@ class Api {
     // response data=gcpSOxwNHZutpFWmFCAYQu1kk25qPfJFdPaHT9kM3gKumDF3GeqSw8f-k8nh-s5OC3GNnhGoF
     try {
       final Response tokenResponse = await http.post(
-        Uri.dataFromString(settings.cardRegistrationURL),
+        Uri.parse(settings.cardRegistrationURL),
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },

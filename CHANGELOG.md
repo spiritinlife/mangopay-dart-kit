@@ -1,3 +1,7 @@
+## [1.0.0-alpha.2] 
+
+* Fix issue with Uri building
+
 ## [1.0.0-alpha.1] 
 
 * Initial work on flutter 2.x support
