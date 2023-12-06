@@ -1,3 +1,7 @@
+## [1.0.0-alpha.3] 
+
+* Bump to Dart 3
+
 ## [1.0.0-alpha.2] 
 
 * Fix issue with Uri building
